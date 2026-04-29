@@ -1,34 +1,30 @@
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.regex.*;
 
-class Bogie {
-String name;
-int capacity;
-
-    Bogie(String name, int capacity) {
-        this.name = name;
-        this.capacity = capacity;
-    }
-}
-
-public class uc9 {
+public class uc11 {
 public static void main(String[] args) {
-List<Bogie> bogies = new ArrayList<>();
 
-        bogies.add(new Bogie("Sleeper", 72));
-        bogies.add(new Bogie("AC Chair", 56));
-        bogies.add(new Bogie("First Class", 24));
-        bogies.add(new Bogie("Sleeper", 60));
-        bogies.add(new Bogie("AC Chair", 48));
+        String trainId = "TRN-1234";
+        String cargoCode = "PET-AB";
 
-        Map<String, List<Bogie>> grouped = bogies.stream()
-                .collect(Collectors.groupingBy(b -> b.name));
+        String trainPattern = "TRN-\\d{4}";
+        String cargoPattern = "PET-[A-Z]{2}";
 
-        for (Map.Entry<String, List<Bogie>> entry : grouped.entrySet()) {
-            System.out.println(entry.getKey());
-            for (Bogie b : entry.getValue()) {
-                System.out.println(b.name + " : " + b.capacity);
-            }
+        Pattern tPattern = Pattern.compile(trainPattern);
+        Pattern cPattern = Pattern.compile(cargoPattern);
+
+        Matcher tMatcher = tPattern.matcher(trainId);
+        Matcher cMatcher = cPattern.matcher(cargoCode);
+
+        if (tMatcher.matches()) {
+            System.out.println("Valid Train ID");
+        } else {
+            System.out.println("Invalid Train ID");
+        }
+
+        if (cMatcher.matches()) {
+            System.out.println("Valid Cargo Code");
+        } else {
+            System.out.println("Invalid Cargo Code");
         }
     }
 }
