@@ -10,7 +10,7 @@ int capacity;
     }
 }
 
-public class uc7 {
+public class uc8 {
 public static void main(String[] args) {
 List<Bogie> bogies = new ArrayList<>();
 
@@ -18,9 +18,11 @@ List<Bogie> bogies = new ArrayList<>();
         bogies.add(new Bogie("AC Chair", 56));
         bogies.add(new Bogie("First Class", 24));
 
-        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+        List<Bogie> filtered = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .toList();
 
-        for (Bogie b : bogies) {
+        for (Bogie b : filtered) {
             System.out.println(b.name + " : " + b.capacity);
         }
     }
