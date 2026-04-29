@@ -1,12 +1,12 @@
 class CargoSafetyException extends RuntimeException {
-CargoSafetyException(String message) {
-super(message);
-}
+    CargoSafetyException(String message) {
+        super(message);
+    }
 }
 
 class GoodsBogie {
-String shape;
-String cargo;
+    String shape;
+    String cargo;
 
     GoodsBogie(String shape) {
         this.shape = shape;
@@ -28,7 +28,7 @@ String cargo;
 }
 
 public class uc15 {
-public static void main(String[] args) {
+    public static void main(String[] args) {
 
         GoodsBogie b1 = new GoodsBogie("Cylindrical");
         GoodsBogie b2 = new GoodsBogie("Rectangular");
