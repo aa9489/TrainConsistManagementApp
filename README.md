@@ -1,30 +1,28 @@
-import java.util.regex.*;
+import java.util.*;
 
-public class uc11 {
+class GoodsBogie {
+String type;
+String cargo;
+
+    GoodsBogie(String type, String cargo) {
+        this.type = type;
+        this.cargo = cargo;
+    }
+}
+
+public class uc12 {
 public static void main(String[] args) {
 
-        String trainId = "TRN-1234";
-        String cargoCode = "PET-AB";
+        List<GoodsBogie> bogies = new ArrayList<>();
 
-        String trainPattern = "TRN-\\d{4}";
-        String cargoPattern = "PET-[A-Z]{2}";
+        bogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
+        bogies.add(new GoodsBogie("Rectangular", "Coal"));
+        bogies.add(new GoodsBogie("Box", "Grain"));
+        bogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
 
-        Pattern tPattern = Pattern.compile(trainPattern);
-        Pattern cPattern = Pattern.compile(cargoPattern);
+        boolean isSafe = bogies.stream()
+                .allMatch(b -> !b.type.equals("Cylindrical") || b.cargo.equals("Petroleum"));
 
-        Matcher tMatcher = tPattern.matcher(trainId);
-        Matcher cMatcher = cPattern.matcher(cargoCode);
-
-        if (tMatcher.matches()) {
-            System.out.println("Valid Train ID");
-        } else {
-            System.out.println("Invalid Train ID");
-        }
-
-        if (cMatcher.matches()) {
-            System.out.println("Valid Cargo Code");
-        } else {
-            System.out.println("Invalid Cargo Code");
-        }
+        System.out.println(isSafe);
     }
 }
